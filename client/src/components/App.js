@@ -44,7 +44,7 @@ class App extends Component {
         SimpleStorage.abi,
         deployedNetwork && deployedNetwork.address
       );
-      // Set web3, accounts, and contract to the state
+      // Set web3, accounts, and contract to the state.
       this.props.setWeb3({ web3 });
       this.props.setAccount({ accounts });
       this.props.setContractInstance({ instance });
