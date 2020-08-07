@@ -4,7 +4,6 @@ import { Grid, Button, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
     marginTop: theme.spacing(2),
   },
   inventory: {
@@ -19,7 +18,12 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary,
   },
   vehicles: {
-    padding: theme.spacing(4),
+    paddingBottom: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+  centerText: {
+    padding: theme.spacing(0),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
@@ -53,19 +57,26 @@ export const Inventory = () => {
           </Button>
         </Grid>
         <div bottom-border></div>
-        <Grid item xs={4}>
+        <Grid item xs={2}>
+        <Typography className={classes.centerText} variant="h3">60</Typography>
           <Typography className={classes.vehicles}>Total Vehicles</Typography>
         </Grid>
         <Grid item xs={2}>
+        </Grid>
+        <Grid item xs={2}>
+        <Typography className={classes.centerText} variant="h3">5</Typography>
           <Typography className={classes.vehicles}>Issues</Typography>
         </Grid>
         <Grid item xs={2}>
+        <Typography className={classes.centerText} variant="h3">3</Typography>
           <Typography className={classes.vehicles}>High</Typography>
         </Grid>
         <Grid item xs={2}>
+        <Typography className={classes.centerText} variant="h3">1</Typography>
           <Typography className={classes.vehicles}>Critical</Typography>
         </Grid>
         <Grid item xs={2}>
+        <Typography className={classes.centerText} variant="h3">4</Typography>
           <Typography className={classes.vehicles}>Disputes</Typography>
         </Grid>
       </Grid>

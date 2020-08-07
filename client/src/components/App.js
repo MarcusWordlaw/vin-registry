@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Header } from './Header';
 import { Inventory } from './Inventory';
-import { Filters } from './Filters';
+import { Filters } from './FilterContainer/Filters';
 import { VinContainer } from './VinContainer';
 import getWeb3 from '../getWeb3';
 import SimpleStorage from '../contracts/SimpleStorage.json';
@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 
 const Container = styled.div`
   display: flex;
+  padding: 5px 450px 20px;
   flex-direction: column;
   flex-grow: 1;
   flex-shrink: 0;
