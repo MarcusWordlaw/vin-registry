@@ -4,9 +4,12 @@
   "description": "Vehicle Registry Blockchain App",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "blk-design-system-react": "^1.1.0",
     "bootstrap": "^4.5.0",
     "chart.js": "^2.9.3",
+    "fontsource-roboto": "^3.0.3",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Header } from './Header';
 import { Inventory } from './Inventory';
 import { Filters } from './Filters';
-import { Vehicles } from './Vehicles';
 import { VinContainer } from './VinContainer';
 import getWeb3 from '../getWeb3';
 import SimpleStorage from '../contracts/SimpleStorage.json';
@@ -60,8 +59,6 @@ class App extends Component {
       <Container>
         <Header />
         <Inventory />
-        <Inventory />
-        <Vehicles />
         <Filters />
         <VinContainer />
       </Container>
