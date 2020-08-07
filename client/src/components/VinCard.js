@@ -1,5 +1,4 @@
 import React from 'react';
-// import styled from 'styled-components';
 import { TableRow, TableCell } from '@material-ui/core';
 // import { colors } from '../../styles';
 
