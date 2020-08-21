@@ -1,5 +1,6 @@
-var SimpleStorage = artifacts.require('./SimpleStorage.sol');
 
-module.exports = function (deployer) {
-  deployer.deploy(SimpleStorage);
+var ContentTracking = artifacts.require("./ContentTracking.sol")
+
+module.exports = function(deployer) {
+    deployer.deploy(ContentTracking);
 };
