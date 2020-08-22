@@ -8,8 +8,8 @@ import { VinContainer } from './VinContainer';
 import getWeb3 from '../getWeb3';
 import ContentTracking from '../contracts/ContentTracking.json';
 import { connect } from 'react-redux';
-import { setWeb3State, setContractState, setAccountsState } from '../store/action';
-import PropTypes from 'prop-types';
+import { setWeb3State } from '../store/action';
+// import PropTypes from 'prop-types';
 
 const Container = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ const Container = styled.div`
 class App extends Component {
   componentDidMount() {
     this.loadWeb3();
-    this.addVehicle();
+    // this.addVehicle();
   }
 
   // Instantiates Web3 library and smart contracts
@@ -37,18 +37,19 @@ class App extends Component {
       const accounts = await web3.eth.getAccounts();
 
       // Get the contract instance.
-      // const networkId = await web3.eth.net.getId();
-      // const deployedNetwork = ContentTracking.networks[networkId];
-      // const instance = new web3.eth.Contract(
-      //   ContentTracking.abi,
-      //   deployedNetwork && deployedNetwork.address
-      // );
+      const networkId = await web3.eth.net.getId();
+      const deployedNetwork = ContentTracking.networks[networkId];
+      const instance = new web3.eth.Contract(
+        ContentTracking.abi,
+        deployedNetwork && deployedNetwork.address
+      );
 
       // console.log('In Load Web 3, what is contract instance', instance.methods);
       // Set web3, accounts, and contract to the state.
-      this.props.setWeb3({ web3 });
-      this.props.setAccount({ accounts });
-      // this.props.setContractInstance({ instance });
+      this.props.setWeb3({ contract: instance });
+      // this.props.setWeb3({ web3 });
+      // this.props.setAccount({ accounts });
+      // this.props.setContractInstance({ contract: instance });
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(`Failed to load web3, accounts, or contract. Check console for details.`);
@@ -71,10 +72,6 @@ class App extends Component {
     console.log('what is this', tryVib);
   };
 
-  generateDailyReport = async () => {};
-
-  exportReport = async () => {};
-
   render() {
     return (
       <Container>
@@ -87,30 +84,24 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  setWeb3: PropTypes.func.isRequired,
-  setAccount: PropTypes.func.isRequired,
-  // setContractInstance: PropTypes.func.isRequired,
-};
+// App.propTypes = {
+//   setWeb3: PropTypes.func.isRequired
+// };
 
 //May not need state
 const mapStateToProps = (state) => ({
   web310: state.web3,
   accounts310: state.accounts,
+  contract310: state.contract,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setWeb3: (payload) => {
       dispatch(setWeb3State(payload));
-    },
-    setAccount: (payload) => {
-      dispatch(setAccountsState(payload));
-    },
-    // setContractInstance: (payload) => {
-    //   dispatch(setContractState(payload));
-    // },
+    }
   };
 };
 
+// export default connect(mapDispatchToProps)(App);
 export default connect(mapStateToProps, mapDispatchToProps)(App);
