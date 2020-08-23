@@ -1,6 +1,6 @@
 
-var ContentTracking = artifacts.require("./ContentTracking.sol")
+var VehicleRegistry = artifacts.require("./VehicleRegistry.sol")
 
 module.exports = function(deployer) {
-    deployer.deploy(ContentTracking);
+    deployer.deploy(VehicleRegistry);
 };
