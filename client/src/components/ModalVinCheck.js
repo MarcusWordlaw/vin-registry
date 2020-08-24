@@ -75,9 +75,6 @@ const ModalVinCheck = (props) => {
             onInput={handleChange}
             autoFocus
           />
-          {/* <Typography component="h1" variant="h5">
-            {() =>returnTruthy}
-          </Typography> */}
           <Button
             type="submit"
             fullWidth

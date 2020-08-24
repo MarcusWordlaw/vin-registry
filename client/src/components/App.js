@@ -1,4 +1,3 @@
-// import React, { useState } from 'react';
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Header } from './Header';
@@ -9,7 +8,6 @@ import getWeb3 from '../getWeb3';
 import VehicleRegistry from '../contracts/VehicleRegistry.json';
 import { connect } from 'react-redux';
 import { setWeb3State } from '../store/action';
-// import PropTypes from 'prop-types';
 
 const Container = styled.div`
   display: flex;
@@ -64,14 +62,8 @@ class App extends Component {
   }
 }
 
-// App.propTypes = {
-//   setWeb3: PropTypes.func.isRequired
-// };
-
 //May not need state
 const mapStateToProps = (state) => ({
-  web310: state.web3,
-  accounts310: state.accounts,
   contract310: state.contract,
 });
 

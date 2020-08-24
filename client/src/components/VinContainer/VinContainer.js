@@ -10,29 +10,6 @@ import PropTypes from 'prop-types';
 const VinContainer = (props) => {
   const { vehicleArray } = props;
 
-  // const VinCard = vehicleArray.map((x, i) => {
-  //   return(
-  //     <React.Fragment>
-  // <TableRow >
-  //   <TableCell>{'4S3BMHB68B3286050'}</TableCell>
-  //   <TableCell>{'CRITICAL'}</TableCell>
-  //   <TableCell>{'8 Days'}</TableCell>
-  //   <TableCell>{'312...'}</TableCell>
-  //   <TableCell>{'Mar...'}</TableCell>
-  //   <TableCell>{'1972'}</TableCell>
-  //   <TableCell>{'Datsun'}</TableCell>
-  //   <TableCell align="right">{'Button'}</TableCell>
-  // </TableRow>
-  //   </React.Fragment>
-  //   )
-  //   })
-
-  // const Comment = () => {
-  //   return (
-  //     <p>Hello World</p>
-  //   )
-  // }
-
   return (
     <React.Fragment>
       <Table size="large">

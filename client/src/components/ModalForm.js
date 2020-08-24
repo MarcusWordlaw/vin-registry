@@ -51,14 +51,11 @@ const ModalForm = (props) => {
   const classes = useStyles();
   const { values, handleChange, handleSubmit } = useForm(formData);
   const { accounts, contract, setVehicleArray } = props;
-  // const valuesArr = []
 
   const createVehicle = async () => {
-    // valuesArr.push(values)
-    // console.log('In Create Vehicle, show values array', valuesArr);
     setVehicleArray({ values});
     let _vin = values.vin;
-    await contract.methods.createVehicle(_vin).send({ from: accounts[0] });
+    await contract.methods.storeVehicle(_vin).send({ from: accounts[0] });
   };
   function formData() {
     console.log('In login', values);
@@ -160,17 +157,7 @@ const ModalForm = (props) => {
           </Button>
         </form>
       </div>
-      {/* <Box mt={8}>
-        <Copyright />
-      </Box> */}
     </Container>
-    // <form onSubmit={handleSubmit}>
-    //     <label>
-    //     VIN
-    //     <input className="input" type="vin" name="vin" placeholder="Vin" onChange={handleChange} value={values.vin} required />
-    //     </label>
-    //     <button type="submit" value="submit">Submit</button>
-    // </form>
   );
 };
 

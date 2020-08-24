@@ -5,8 +5,6 @@ import ModalVinCheck from '../ModalVinCheck';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import FilterListIcon from '@material-ui/icons/FilterList';
-// import CustomizedSelects from './CustomizedSelects'
 
 function getModalStyle() {
   const top = 35;
