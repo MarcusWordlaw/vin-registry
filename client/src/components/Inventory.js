@@ -42,6 +42,26 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  centerTextBlue: {
+    padding: theme.spacing(0),
+    textAlign: 'center',
+    color: '#00b0ff',
+  },
+  centerTextYellow: {
+    padding: theme.spacing(0),
+    textAlign: 'center',
+    color: '#fbc02d',
+  },
+  centerTextRed: {
+    padding: theme.spacing(0),
+    textAlign: 'center',
+    color: '#bf360c',
+  },
+  textWhite: {
+    padding: theme.spacing(0),
+    textAlign: 'center',
+    color: '#FFFFFF',
+  },
   logo: {
     padding: theme.spacing(0),
     textAlign: 'left',
@@ -60,8 +80,6 @@ const useStyles = makeStyles((theme) => ({
 const Inventory = (props) => {
   const classes = useStyles();
   const { vehicleArray } = props;
-
-  // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
 
@@ -129,11 +147,11 @@ const Inventory = (props) => {
           <Button
             className={classes.buttons}
             variant="contained"
-            color="secondary"
+            color="primary"
             type="button"
             onClick={handleOpen}
           >
-            <Typography>Add Vehicles</Typography>
+            <Typography className={classes.textWhite}>Add Vehicles</Typography>
           </Button>
           <Modal
             open={open}
@@ -153,25 +171,25 @@ const Inventory = (props) => {
         </Grid>
         <Grid item xs={2}></Grid>
         <Grid item xs={2}>
-          <Typography className={classes.centerText} variant="h3">
+          <Typography className={classes.centerTextBlue} variant="h3">
             {getIssues()}
           </Typography>
           <Typography className={classes.vehicles}>Issues</Typography>
         </Grid>
         <Grid item xs={2}>
-          <Typography className={classes.centerText} variant="h3">
+          <Typography className={classes.centerTextYellow} variant="h3">
             {getCritical()}
           </Typography>
           <Typography className={classes.vehicles}>High</Typography>
         </Grid>
         <Grid item xs={2}>
-          <Typography className={classes.centerText} variant="h3">
+          <Typography className={classes.centerTextRed} variant="h3">
           {getHigh()}
           </Typography>
           <Typography className={classes.vehicles}>Critical</Typography>
         </Grid>
         <Grid item xs={2}>
-          <Typography className={classes.centerText} variant="h3">
+          <Typography className={classes.centerTextRed} variant="h3">
             0
           </Typography>
           <Typography className={classes.vehicles}>Disputes</Typography>
@@ -186,7 +204,6 @@ Inventory.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log("in Map state to props Inventory", state.vehicleReducer)
   return {
     vehicleArray: state.vehicleReducer.vehicleArray,
   };

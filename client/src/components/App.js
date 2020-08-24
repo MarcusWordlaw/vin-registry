@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Header } from './Header';
 import Inventory from './Inventory';
-import { Filters } from './FilterContainer/Filters';
+import CheckVin from './FilterContainer/CheckVin';
 import VinContainer from './VinContainer/VinContainer';
 import getWeb3 from '../getWeb3';
 import VehicleRegistry from '../contracts/VehicleRegistry.json';
@@ -57,7 +57,7 @@ class App extends Component {
       <Container>
         <Header />
         <Inventory />
-        <Filters />
+        <CheckVin />
         <VinContainer />
       </Container>
     );
