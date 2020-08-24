@@ -6,6 +6,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Button, Typography } from '@material-ui/core';
 
 const VinContainer = (props) => {
   const { vehicleArray } = props;
@@ -36,7 +37,11 @@ const VinContainer = (props) => {
                 <TableCell>{x.customerName}</TableCell>
                 <TableCell>{x.modelYear}</TableCell>
                 <TableCell>{x.brand}</TableCell>
-                <TableCell align="right">{'Button'}</TableCell>
+                <TableCell align="right">
+                  <Button variant="contained" color="secondary">
+                    <Typography>CONTACT</Typography>
+                  </Button>
+                </TableCell>
               </TableRow>
             );
           })}
