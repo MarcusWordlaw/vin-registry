@@ -43,31 +43,13 @@ class App extends Component {
         deployedNetwork && deployedNetwork.address
       );
 
-      // console.log('In Load Web 3, what is contract instance', instance.methods);
       // Set web3, accounts, and contract to the state.
       this.props.setWeb3({ web3, accounts, contract: instance });
-      // this.addVehicle(accounts, instance)
-      // this.props.setWeb3({ web3 });
-      // this.props.setAccount({ accounts });
-      // this.props.setContractInstance({ contract: instance });
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(`Failed to load web3, accounts, or contract. Check console for details.`);
       console.error(error);
     }
-  };
-
-  addVehicle = async (accounts, contract) => {
-    // let vin = "0x7465737400000000000000000000000000000000000000000000000000000000";
-    // const { accounts, contract } = this.props;
-    // const { document } = this.state;
-
-    //Invoking set method in content tracking contract to post document to blockchain
-    // await contract.methods.createVehicle(vin).send({ from: accounts[0] });
-
-    // //Method to set hashed document as a state variable
-    // const hashResponse = await contract.methods.returnHashedDocument(document).call();
-    
   };
 
   render() {
