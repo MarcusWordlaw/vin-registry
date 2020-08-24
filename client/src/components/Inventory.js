@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button, Typography } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
 import ModalForm from './ModalForm';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 function getModalStyle() {
   const top = 35;
@@ -55,8 +57,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Inventory = () => {
+const Inventory = (props) => {
   const classes = useStyles();
+  const { vehicleArray } = props;
 
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -72,13 +75,40 @@ export const Inventory = () => {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      {/* <h2 id="simple-modal-title">Text in a modal</h2>
-      <p id="simple-modal-description">
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-      </p> */}
       <ModalForm />
     </div>
   );
+
+  // Probably a better way to do this, revisit 
+  const getIssues = () => {
+    let statusNumber = 0
+    vehicleArray.map( (x) => {
+      if(x.vehicleStatus === "issues")
+      statusNumber++
+      return statusNumber;
+    })
+    return statusNumber
+  }
+
+  const getHigh = () => {
+    let statusNumber = 0
+    vehicleArray.map( (x) => {
+      if(x.vehicleStatus === "high")
+      statusNumber++
+      return statusNumber;
+    })
+    return statusNumber
+  }
+
+  const getCritical = () => {
+    let statusNumber = 0
+    vehicleArray.map( (x) => {
+      if(x.vehicleStatus === "critical")
+      statusNumber++
+      return statusNumber;
+    })
+    return statusNumber
+  }
 
   return (
     <div className={classes.root}>
@@ -117,32 +147,32 @@ export const Inventory = () => {
         <div bottom-border></div>
         <Grid item xs={2}>
           <Typography className={classes.centerText} variant="h3">
-            60
+            {vehicleArray.length}
           </Typography>
           <Typography className={classes.vehicles}>Total Vehicles</Typography>
         </Grid>
         <Grid item xs={2}></Grid>
         <Grid item xs={2}>
           <Typography className={classes.centerText} variant="h3">
-            5
+            {getIssues()}
           </Typography>
           <Typography className={classes.vehicles}>Issues</Typography>
         </Grid>
         <Grid item xs={2}>
           <Typography className={classes.centerText} variant="h3">
-            3
+            {getCritical()}
           </Typography>
           <Typography className={classes.vehicles}>High</Typography>
         </Grid>
         <Grid item xs={2}>
           <Typography className={classes.centerText} variant="h3">
-            1
+          {getHigh()}
           </Typography>
           <Typography className={classes.vehicles}>Critical</Typography>
         </Grid>
         <Grid item xs={2}>
           <Typography className={classes.centerText} variant="h3">
-            4
+            0
           </Typography>
           <Typography className={classes.vehicles}>Disputes</Typography>
         </Grid>
@@ -150,3 +180,16 @@ export const Inventory = () => {
     </div>
   );
 };
+
+Inventory.propTypes = {
+  vehicleArray: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  console.log("in Map state to props Inventory", state.vehicleReducer)
+  return {
+    vehicleArray: state.vehicleReducer.vehicleArray,
+  };
+};
+
+export default connect(mapStateToProps)(Inventory);

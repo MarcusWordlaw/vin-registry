@@ -38,9 +38,6 @@ export const Filters = () => {
     <div className={classes.root}>
       <Grid container spacing={0} gridShadow={3}>
         <Grid item xs={8}>
-          {/* <Typography className={classes.logo} variant="h5">
-          <FilterListIcon /> FILTERS
-          </Typography> */}
         </Grid>
         <Grid item xs={2}>
           <Button className={classes.buttons} variant="contained" color="secondary">

@@ -6,10 +6,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import MenuItem from '@material-ui/core/MenuItem';
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import useForm from './useForm';
 import { setVehicleArrayState } from '../store/action';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,16 +34,16 @@ const useStyles = makeStyles((theme) => ({
 
 const status = [
   {
+    value: 'issues',
+    label: 'Issues',
+  },
+  {
+    value: 'high',
+    label: 'High',
+  },
+  {
     value: 'critical',
     label: 'Critical',
-  },
-  {
-    value: 'medium',
-    label: 'Medium',
-  },
-  {
-    value: 'low',
-    label: 'Low',
   },
 ];
 
@@ -51,12 +51,12 @@ const ModalForm = (props) => {
   const classes = useStyles();
   const { values, handleChange, handleSubmit } = useForm(formData);
   const { accounts, contract, setVehicleArray } = props;
-  const valuesArr = []
+  // const valuesArr = []
 
   const createVehicle = async () => {
-    valuesArr.push(values)
+    // valuesArr.push(values)
     // console.log('In Create Vehicle, show values array', valuesArr);
-    setVehicleArray({ valuesArr });
+    setVehicleArray({ values});
     let _vin = values.vin;
     await contract.methods.createVehicle(_vin).send({ from: accounts[0] });
   };

@@ -1,25 +1,38 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { VinCard } from '../VinCard'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-function preventDefault(event) {
-  event.preventDefault();
-}
+const VinContainer = (props) => {
+  const { vehicleArray } = props;
 
-const useStyles = makeStyles((theme) => ({
-  seeMore: {
-    marginTop: theme.spacing(3),
-  },
-}));
+  // const VinCard = vehicleArray.map((x, i) => {
+  //   return(
+  //     <React.Fragment>
+  // <TableRow >
+  //   <TableCell>{'4S3BMHB68B3286050'}</TableCell>
+  //   <TableCell>{'CRITICAL'}</TableCell>
+  //   <TableCell>{'8 Days'}</TableCell>
+  //   <TableCell>{'312...'}</TableCell>
+  //   <TableCell>{'Mar...'}</TableCell>
+  //   <TableCell>{'1972'}</TableCell>
+  //   <TableCell>{'Datsun'}</TableCell>
+  //   <TableCell align="right">{'Button'}</TableCell>
+  // </TableRow>
+  //   </React.Fragment>
+  //   )
+  //   })
 
-export const VinContainer = () => {
-  const classes = useStyles();
+  // const Comment = () => {
+  //   return (
+  //     <p>Hello World</p>
+  //   )
+  // }
+
   return (
     <React.Fragment>
       <Table size="large">
@@ -36,14 +49,34 @@ export const VinContainer = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          <VinCard/>
+          {vehicleArray.map((x) => {
+            return (
+              <TableRow key={x.vin}>
+                <TableCell>{x.vin}</TableCell>
+                <TableCell>{x.vehicleStatus}</TableCell>
+                <TableCell>{5}</TableCell>
+                <TableCell>{x.customerNumber}</TableCell>
+                <TableCell>{x.customerName}</TableCell>
+                <TableCell>{x.modelYear}</TableCell>
+                <TableCell>{x.brand}</TableCell>
+                <TableCell align="right">{'Button'}</TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
-      <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more orders
-        </Link>
-      </div>
     </React.Fragment>
   );
 };
+
+VinContainer.propTypes = {
+  vehicleArray: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    vehicleArray: state.vehicleReducer.vehicleArray,
+  };
+};
+
+export default connect(mapStateToProps)(VinContainer);

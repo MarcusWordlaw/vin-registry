@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Header } from './Header';
-import { Inventory } from './Inventory';
+import Inventory from './Inventory';
 import { Filters } from './FilterContainer/Filters';
-import { VinContainer } from './VinContainer';
+import VinContainer from './VinContainer/VinContainer';
 import getWeb3 from '../getWeb3';
 import VehicleRegistry from '../contracts/VehicleRegistry.json';
 import { connect } from 'react-redux';
