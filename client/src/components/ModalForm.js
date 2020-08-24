@@ -9,6 +9,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import useForm from './useForm';
+import { setVehicleArrayState } from '../store/action';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -49,11 +50,13 @@ const status = [
 const ModalForm = (props) => {
   const classes = useStyles();
   const { values, handleChange, handleSubmit } = useForm(formData);
-  const { accounts, contract } = props;
+  const { accounts, contract, setVehicleArray } = props;
+  const valuesArr = []
 
   const createVehicle = async () => {
-    debugger;
-    console.log('In Create Vehicle');
+    valuesArr.push(values)
+    // console.log('In Create Vehicle, show values array', valuesArr);
+    setVehicleArray({ valuesArr });
     let _vin = values.vin;
     await contract.methods.createVehicle(_vin).send({ from: accounts[0] });
   };
@@ -176,10 +179,19 @@ ModalForm.propTypes = {
   contract: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    accounts: state.root.accounts,
-    contract: state.root.contract,
+    setVehicleArray: (payload) => {
+      dispatch(setVehicleArrayState(payload));
+    }
   };
 };
-export default connect(mapStateToProps)(ModalForm);
+
+const mapStateToProps = (state) => {
+  console.log("in Map state to props", state.webReducer)
+  return {
+    accounts: state.webReducer.accounts,
+    contract: state.webReducer.contract,
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ModalForm);

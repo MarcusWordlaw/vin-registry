@@ -1,17 +1,25 @@
 import { createStore, combineReducers } from 'redux';
-import rootReducer from './rootReducer';
-import { reducer as reduxFormReducer } from 'redux-form';
+import webReducer from './webReducer';
+import vehicleReducer from './vehicleReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-export default (initialState) => {
-  const reducer = combineReducers({
-    form: reduxFormReducer, // mounted under "form"
-    root: rootReducer,
-  });
-  const store = (window.__REDUX_DEVTOOLS_EXTENSION__? window.__REDUX_DEVTOOLS_EXTENSION__()(createStore) : createStore)(
-    reducer,
-    composeWithDevTools()
-  );
+const rootReducer = combineReducers({
+  webReducer,
+  vehicleReducer
+})
 
-  return store;
-};
+
+export default function configureStore(initialState) {
+  return createStore(rootReducer, composeWithDevTools(), initialState);
+}
+
+// => {
+//   const reducer = combineReducers({ rootReducer,
+//   });
+//   const store = (window.__REDUX_DEVTOOLS_EXTENSION__? window.__REDUX_DEVTOOLS_EXTENSION__()(createStore) : createStore)(
+//     reducer,
+//     composeWithDevTools()
+//   );
+
+//   return store;
+// };

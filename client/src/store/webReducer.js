@@ -4,8 +4,8 @@ const initialState = {
 
 };
 
-export default function rootReducer(state = initialState, action) {
-  // console.log('In offer Reducer', action.payload);
+export default function webReducer(state = initialState, action) {
+  console.log('In web3 Reducer', action);
   const { type } = action;
   switch (type) {
     case SET_WEB3: {
@@ -16,14 +16,6 @@ export default function rootReducer(state = initialState, action) {
         contract: action.payload.contract,
       };
     }
-    // case FIELD: {
-    //   return {
-    //     // ...state,
-    //     web3: action.payload.web3,
-    //     accounts: action.payload.accounts,
-    //     contract: action.payload.contract,
-    //   };
-    // }
     default: {
       return state;
     }
